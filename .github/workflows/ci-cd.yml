@@ -31,6 +31,9 @@ jobs:
     - name: Verify lunatic installation
       run: lunatic --version
 
+    - name: Build wasi
+      run: cargo wasi build --release --target wasm32-wasi
+
     - name: Build
       run: cargo build --release --target wasm32-wasi
 
