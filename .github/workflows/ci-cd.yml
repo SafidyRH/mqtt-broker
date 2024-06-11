@@ -20,15 +20,19 @@ jobs:
       uses: actions-rs/toolchain@v1.0.6
       with:
         toolchain: stable
-        
+
     - name: Install wasm32-wasi target
       run: rustup target add wasm32-wasi
+
+    - name: Install lunatic
+      run: cargo install lunatic-runtime
 
     - name: Build
       run: cargo build --release
 
     - name: Run tests
-      run: cargo test
+      run: lunatic test target/wasm32-wasi/debug/deps/mqtt_broker_blog-b388484a9edf50cf.wasm
+
 
   docker:
     needs: build
