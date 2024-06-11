@@ -27,13 +27,15 @@ jobs:
     - name: Install lunatic
       run: cargo install lunatic-runtime
 
+    - name: Verify lunatic installation
+      run: lunatic --version
+
     - name: Build
-      run: cargo build --release
+      run: cargo build --release --target wasm32-wasi
 
     - name: Run tests
-      run: lunatic test target/wasm32-wasi/debug/deps/mqtt_broker_blog-b388484a9edf50cf.wasm
-
-
+      run: cargo test --target wasm32-wasi
+      
   docker:
     needs: build
     runs-on: ubuntu-latest
