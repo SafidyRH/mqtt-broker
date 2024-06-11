@@ -9,3 +9,17 @@ version = "0.1.0"
 lunatic = "0.13.1"
 mqtt_packet_3_5 = {version = "0.2.2", features = ["serde", "serde_support"]}
 serde = "1.0.162"
+
+[dev-dependencies]
+lunatic-test = "0.13.0"
+
+[build-dependencies]
+lunatic-macros = "0.13.0"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "mqtt-broker"
+path = "src/main.rs"
+

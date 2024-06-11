@@ -31,16 +31,17 @@ jobs:
     - name: Verify lunatic installation
       run: lunatic --version
 
-    - name: Rebuild project
-      run: |
-        cargo clean
-        cargo build --release --target wasm32-wasi
-        
-    - name: Check compilation artifacts
-      run: ls -l target/wasm32-wasi/debug/deps/
+    - name: Build
+      run: cargo build --release --target wasm32-wasi
 
-    - name: Run tests
-      run: cargo test --target wasm32-wasi
+    - name: Generate wasm test artifacts
+      run: cargo test --no-run --target wasm32-wasi
+
+    - name: Run wasm tests
+      run: |
+        for file in target/wasm32-wasi/debug/deps/*.wasm; do
+          lunatic run "$file"
+        done
 
   docker:
     needs: build
