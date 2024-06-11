@@ -25,6 +25,12 @@ jobs:
     - name: Add the WebAssembly target
       run: rustup target add wasm32-wasi
 
+    - name: Install lunatic
+      run: cargo install lunatic-runtime
+
+    - name: Verify lunatic installation
+      run: lunatic --version
+
     - name: Build the app
       run: cargo build --release --target=wasm32-wasi
 
