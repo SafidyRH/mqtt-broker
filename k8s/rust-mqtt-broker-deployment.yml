@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqtt_broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mqtt_broker
+  template:
+    metadata:
+      labels:
+        app: mqtt_broker
+    spec:
+      containers:
+      - name: mqtt_broker
+        image: safidyrh21/mqtt_broker:latest
+        ports:
+        - containerPort: 1883
