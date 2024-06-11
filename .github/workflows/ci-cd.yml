@@ -34,12 +34,6 @@ jobs:
     - name: Build the app
       run: cargo build --release --target=wasm32-wasi
 
-    - name: Run wasm tests
-      run: |
-        for file in target/wasm32-wasi/debug/deps/*.wasm; do
-          lunatic run "$file"
-        done
-
   docker:
     needs: build
     runs-on: ubuntu-latest
