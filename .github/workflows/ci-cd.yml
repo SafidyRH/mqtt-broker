@@ -31,14 +31,11 @@ jobs:
     - name: Verify lunatic installation
       run: lunatic --version
 
-    - name: Build wasi
-      run: cargo wasi build --release --target wasm32-wasi
-
     - name: Build
-      run: cargo build --release --target wasm32-wasi
+      run: cargo build --release
 
     - name: Generate wasm test artifacts
-      run: cargo test --no-run --target wasm32-wasi
+      run: cargo test
 
     - name: Run wasm tests
       run: |
