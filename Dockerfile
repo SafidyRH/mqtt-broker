@@ -8,7 +8,7 @@ WORKDIR /mqtt-broker
 COPY . .
 
 # Compilez l'application en mode release
-RUN cargo build --release
+RUN cargo build --release --target=wasm32-wasi
 
 # Définissez le point d'entrée de votre conteneur
 CMD ["./target/release/mqtt_broker"]
