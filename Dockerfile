@@ -2,7 +2,10 @@
 FROM rust:latest
 
 # Définissez le répertoire de travail
-WORKDIR /app
+WORKDIR /mqtt-broker
+
+# Copiez les fichiers Cargo.toml et Cargo.lock
+COPY Cargo.toml Cargo.lock ./
 
 # Téléchargez les dépendances de Rust
 RUN cargo fetch
