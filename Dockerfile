@@ -7,6 +7,10 @@ WORKDIR /mqtt-broker
 # Copiez le reste de votre code source
 COPY . .
 
+RUN rustup target add wasm32-wasi
+
+RUN cargo install lunatic-runtime
+
 # Compilez l'application en mode release
 RUN cargo build --release --target=wasm32-wasi
 
